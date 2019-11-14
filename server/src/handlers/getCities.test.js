@@ -1,29 +1,22 @@
 const assert = require("assert");
 const express = require("express");
-const nock = require("nock");
 const supertest = require("supertest");
 const router = require("../router");
 const app = express();
-const { jobsResponse } = require("../utils/dummyData/dummyResponse");
+const { citiesResponse } = require("../utils/dummyData/dummyResponse");
 
-describe("GET /jobs", () => {
+describe("GET /cities", () => {
     app.use(router);
-    it("it shoud return status code 200 to indicate jobs were retrieved", done => {
-        nock("https://www.reed.co.uk/api/1.0")
-            .get("/search")
-            .query(true)
-            .reply(200, jobsResponse);
-
+    it("it shoud return status code 200 to indicate cities were retrieved", done => {
         supertest(app)
-            .get(`/jobs`)
-            .query({ city: "london", nrresults: "100" })
+            .get(`/cities`)
             .expect("Content-Type", /json/)
             .end((err, res) => {
                 if (err) {
                     done(err);
                 } else {
                     assert.equal(res.status, "200");
-                    assert.deepEqual(res.body, jobsResponse);
+                    assert.deepEqual(res.body, citiesResponse);
                     done();
                 }
             });
