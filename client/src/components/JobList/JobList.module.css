@@ -1,0 +1,33 @@
+.wrapper {
+  max-height: 30rem;
+  overflow: scroll;
+  padding: 2rem;
+  margin-top: 2rem;
+  border: 3px solid #e06e44;
+}
+
+.card {
+  margin: 1rem 0rem;
+  border: 3px solid grey;
+  padding: 1rem;
+  margin: 1rem 0rem;
+  border: 3px solid grey;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+}
+
+.card-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-bottom: 3px solid #e8e8e8;
+  padding-bottom: 17px;
+}
+
+.card-link {
+  background: #34fbaa;
+  padding: 1rem;
+  align-self: flex-end;
+  color: black;
+  font-weight: bold;
+}
