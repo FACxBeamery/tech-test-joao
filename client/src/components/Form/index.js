@@ -19,12 +19,11 @@ const Form = ({ context }) => {
       try {
         setJobs(undefined);
         setShowLoadingMessage(true);
-        const response = await axios.get("/jobs", {
-          params: {
-            city: userInput.toLowerCase(),
-            resultsToTake: "100"
-          }
-        });
+        const city = userInput.toLowerCase();
+        const nrresults = "100";
+        const response = await axios.get(
+          `/jobs?city=${city}&nrresults=${nrresults}`
+        );
         const { data } = response;
         const jobResults = data["results"];
         setShowLoadingMessage(false);
@@ -65,7 +64,10 @@ const Form = ({ context }) => {
       )}
       {showLoadingMessage && (
         <p>
-          <span aria-label="looking emoji">🧐</span> Getting jobs...
+          <span role="img" aria-label="looking emoji">
+            🧐
+          </span>{" "}
+          Getting jobs...
         </p>
       )}
     </div>

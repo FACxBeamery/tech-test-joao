@@ -6,9 +6,9 @@ const API_KEY = process.env.API_KEY;
 const getJobs = async (req, res) => {
   try {
     const { query } = req;
-    const { city, resultsToTake } = query;
+    const { city, nrresults } = query;
 
-    const url = `https://www.reed.co.uk/api/1.0/search?locationName=${city}&resultsToTake=${resultsToTake}&distancefromlocation=5`;
+    const url = `https://www.reed.co.uk/api/1.0/search?locationName=${city}&resultsToTake=${nrresults}&distancefromlocation=5`;
 
     const response = await axios({
       method: "get",
