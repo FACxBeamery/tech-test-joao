@@ -1,45 +1,41 @@
 import React from "react";
 
-import styles from "OptionsList.module.css";
+import styles from "./OptionsList.module.css";
 
 const OptionsList = ({
-    showOptions,
-    userInput,
-    filteredOptions,
-    activeOption,
-    onClick
+  showOptions,
+  userInput,
+  filteredOptions,
+  activeOption,
+  onClick
 }) => {
-    if (showOptions && userInput) {
-        if (filteredOptions.length) {
+  if (showOptions && userInput) {
+    if (filteredOptions.length) {
+      return (
+        <ul className={styles["options"]}>
+          {filteredOptions.map((optionName, index) => {
+            let className;
+            if (index === activeOption) {
+              className = styles["option-active"];
+            }
             return (
-                <ul className={styles["options"]}>
-                    {filteredOptions.map((optionName, index) => {
-                        let className;
-                        if (index === activeOption) {
-                            className = styles["option-active"];
-                        }
-                        return (
-                            <li
-                                className={className}
-                                key={optionName}
-                                onClick={onClick}
-                            >
-                                {optionName}
-                            </li>
-                        );
-                    })}
-                </ul>
+              <li className={className} key={optionName} onClick={onClick}>
+                {optionName}
+              </li>
             );
-        } else {
-            return (
-                <div className={styles["no-options"]}>
-                    <em>No Option!</em>
-                </div>
-            );
-        }
+          })}
+        </ul>
+      );
     } else {
-        return null;
+      return (
+        <div className={styles["no-options"]}>
+          <em>No Option!</em>
+        </div>
+      );
     }
+  } else {
+    return null;
+  }
 };
 
 export default OptionsList;
