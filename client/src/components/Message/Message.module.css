@@ -1,0 +1,12 @@
+.normal {
+    font-weight: bold;
+}
+
+.warning {
+    color: indianred;
+    font-weight: bold;
+}
+
+.loading {
+    text-align: center;
+}
