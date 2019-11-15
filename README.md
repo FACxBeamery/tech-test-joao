@@ -4,7 +4,7 @@
 Find relevant jobs in a UK city of your preference.
 
 ## Technical Overview
-This is a full stack app that uses `React.JS` on the client-side and `Express.JS` on the backend to listen for requests coming from the front end.
+This is a full stack app that uses `React.JS` on the client-side and `Express.JS` to build the server, on the backend, which will listen for requests coming from the frontend.
 
 
 ## 3rd Party API - reed.co.uk JobSeeker API
@@ -29,7 +29,9 @@ API_KEY=YOURAPIKEY
 
 ### `To run locally`
   `npm i` in both `/server` and `/client`
+  
   `docker-compose -f docker-compose.yml up --build` on root folder to run both services. 
+  
   `npm run test` on both `/server` and `/client` to run respective test files
   
 
