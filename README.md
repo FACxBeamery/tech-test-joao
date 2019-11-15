@@ -9,11 +9,19 @@ Find relevant jobs in a UK city of your preference.
 
 ## Technical Overview
 
+> dependencies: node, npm, Docker, and git. 
+
 This is a full stack app that uses `React.JS` on the client-side and `Express.JS` to build the server, on the backend, which will listen for requests coming from the frontend.
 
 `DOCKER` was used to define and run this multi-container application: 
   - please see `Dockerfile-dev` in both `client` and `server` folders. Each of these files ensure the node dependencies are installed and necessary `npm` scripts are run
   - `docker-compose.yml` file creates and runs client and server containers.
+  
+### Endpoints available
+
+`GET /jobs` params: `city` `nrOfResults` response-type: json
+
+`GET /cities` response-type: json
 
 ### Testing
 Client side with `react-testing-library` and `jest`.
@@ -21,12 +29,14 @@ Server side with `supertest`, `nock`, and `mocha`.
 
 ## 3rd Party API - reed.co.uk JobSeeker API
 
+`GET /jobs` will call JobSeeker API to 
 Find Documentation [here](https://www.reed.co.uk/developers/Jobseeker)
 
 criteria used for the `GET` request: `locationName` and `resultsToTake`
 
 > Minimum results retrieved by the API are 100 results. 
 
+POSTMAN collection: https://www.getpostman.com/collections/2cab1567af9783111ec6
 
 ## Scripts
 
@@ -46,8 +56,11 @@ API_KEY=YOURAPIKEY
   `npm i` in both `/server` and `/client`
   
   `docker-compose -f docker-compose.yml up --build` on root folder to run both services. 
+  _________
   
   `npm run test` on both `/server` and `/client` to run respective test files
+  
+  NB: This project works only with Docker. Running `npm start` in both server and client will raise errors with port mapping. 
 
   
 
