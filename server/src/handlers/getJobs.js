@@ -6,23 +6,32 @@ const API_KEY = process.env.API_KEY;
 const getJobs = async (req, res) => {
   try {
     const { query } = req;
-    const { city, nrresults } = query;
+    const { city, nrOfResults } = query;
+    const oneOfQueriesIsUndefined = !city || !nrOfResults;
 
-    const url = `https://www.reed.co.uk/api/1.0/search?locationName=${city}&resultsToTake=${nrresults}&distancefromlocation=5`;
+    if (oneOfQueriesIsUndefined) {
+      res
+        .status(204)
+        .send(
+          "The request is missing required data. city and nrOfResults are important params"
+        );
+    } else {
+      const url = `https://www.reed.co.uk/api/1.0/search?locationName=${city}&resultsToTake=${nrOfResults}&distancefromlocation=5`;
 
-    const response = await axios({
-      method: "get",
-      url,
-      auth: {
-        username: API_KEY
-      }
-    });
-    res.status(200).json(response.data);
+      const response = await axios({
+        method: "get",
+        url,
+        auth: {
+          username: API_KEY
+        }
+      });
+      res.status(200).json(response.data);
+    }
   } catch (error) {
     res
       .status(500)
       .send(
-        "There seems to be some issues with our server. Please wait while we try to fix it"
+        "There seems to be some issues with the connection to our server. Please try again later."
       );
   }
 };
