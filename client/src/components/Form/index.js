@@ -61,7 +61,7 @@ const Form = ({ context }) => {
         const { data } = response;
         setOptions(data);
       } catch (error) {
-        throw error;
+        return error;
       }
     }
     getCities();
