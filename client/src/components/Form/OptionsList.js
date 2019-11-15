@@ -12,7 +12,7 @@ const OptionsList = ({
   if (showOptions && userInput) {
     if (filteredOptions.length) {
       return (
-        <ul className={styles["options"]}>
+        <ul className={styles["options"]} data-testid="list">
           {filteredOptions.map((optionName, index) => {
             let className;
             if (index === activeOption) {
