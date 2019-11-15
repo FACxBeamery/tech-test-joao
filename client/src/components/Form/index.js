@@ -23,6 +23,7 @@ const Form = ({ context }) => {
   ]);
   const [showWarningMessage, setShowWarningMessage] = useState(false);
   const [showLoadingMessage, setShowLoadingMessage] = useState(false);
+  const [showNetworkErrorMessage, setShowNetworkErrorMessage] = useState(false);
 
   const handleOnSubmit = async e => {
     e.preventDefault();
@@ -32,21 +33,24 @@ const Form = ({ context }) => {
       try {
         setJobs(undefined);
         setShowLoadingMessage(true);
+        setShowNetworkErrorMessage(false);
         const city = userInput.toLowerCase();
-        const nrresults = "100";
+        const nrOfResults = "100";
         const response = await axios.get(
-          `/jobs?city=${city}&nrresults=${nrresults}`
+          `/jobs?city=${city}&nrOfResults=${nrOfResults}`
         );
         const { data } = response;
         const jobResults = data["results"];
         setShowLoadingMessage(false);
         setJobs(jobResults);
       } catch (error) {
-        console.log(error);
+        setShowLoadingMessage(false);
+        setShowNetworkErrorMessage(true);
       }
     } else {
       setUserInput("");
       setShowWarningMessage(true);
+      setShowNetworkErrorMessage(false);
       setJobs();
     }
   };
@@ -84,6 +88,12 @@ const Form = ({ context }) => {
             🧐
           </span>{" "}
           Getting jobs...
+        </Message>
+      )}
+      {showNetworkErrorMessage && (
+        <Message type={"warning"}>
+          Sorry! We're experiencing some problems on our end. You might check
+          your Internet connection.
         </Message>
       )}
     </div>
