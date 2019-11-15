@@ -6,5 +6,5 @@ import SubHeader from "./index";
 
 test("renders the SubHeader component with dummy children props", () => {
   const { container } = render(<SubHeader>test props</SubHeader>);
-  expect(container.firstChild).toContainHTML("<h2>test props</h2>");
+  expect(container.firstChild).toContainHTML("test props");
 });
