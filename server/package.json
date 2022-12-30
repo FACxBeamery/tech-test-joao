@@ -15,7 +15,7 @@
     "nodemon": "^1.19.4"
   },
   "devDependencies": {
-    "mocha": "^6.2.2",
+    "mocha": "^10.2.0",
     "supertest": "^4.0.2",
     "nock": "^11.7.0",
     "jest": "^24.9.0"
